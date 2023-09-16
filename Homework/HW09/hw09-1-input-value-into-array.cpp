@@ -28,34 +28,30 @@
 #include <stdio.h>
 
 int main() {
-    int N;
-    printf("Enter the number of elements (N): ");
-    scanf("%d", &N);
+    int arr[100]; // สร้างอาเรย์เพื่อเก็บข้อมูล 100 ค่า (คุณสามารถปรับขนาดตามต้องการ)
+    int N = 0;
 
-    if (N <= 0) {
-        printf("Invalid input. N should be a positive integer.\n");
-        return 1;
-    }
+    printf("Enter elements into the array (enter -1 to stop):\n");
+    int input;
 
-    int arr[N];
-    printf("Enter %d elements (enter -1 to stop):\n", N);
+    do {
+        scanf("%d", &input);
 
-    int i;
-    for (i = 0; i < N; i++) {
-        scanf("%d", &arr[i]);
-        if (arr[i] == -1) {
-            N = i; // เมื่อกรอก -1 ให้กำหนดค่า N ใหม่เพื่อหยุดการกรอกข้อมูล
+        if (input == -1) {
             break;
         }
-    }
+
+        arr[N] = input;
+        N++;
+    } while (N < 100);
 
     printf("Index = ");
-    for (i = 0; i < N; i++) {
+    for (int i = 0; i < N; i++) {
         printf("%d ", i);
     }
 
     printf("\nArray = ");
-    for (i = 0; i < N; i++) {
+    for (int i = 0; i < N; i++) {
         printf("%d ", arr[i]);
     }
 
