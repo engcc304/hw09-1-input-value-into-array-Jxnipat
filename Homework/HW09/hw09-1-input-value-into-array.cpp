@@ -25,3 +25,41 @@
         Array = 1 1 3 9 8 2 7 8
 
 */
+#include <stdio.h>
+
+int main() {
+    int N;
+    printf("Enter the number of elements (N): ");
+    scanf("%d", &N);
+
+    if (N <= 0) {
+        printf("Invalid input. N should be a positive integer.\n");
+        return 1;
+    }
+
+    int arr[N];
+    printf("Enter %d elements (enter -1 to stop):\n", N);
+
+    int i;
+    for (i = 0; i < N; i++) {
+        scanf("%d", &arr[i]);
+        if (arr[i] == -1) {
+            N = i; // เมื่อกรอก -1 ให้กำหนดค่า N ใหม่เพื่อหยุดการกรอกข้อมูล
+            break;
+        }
+    }
+
+    printf("Index = ");
+    for (i = 0; i < N; i++) {
+        printf("%d ", i);
+    }
+
+    printf("\nArray = ");
+    for (i = 0; i < N; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    printf("\n");
+
+    return 0;
+}
