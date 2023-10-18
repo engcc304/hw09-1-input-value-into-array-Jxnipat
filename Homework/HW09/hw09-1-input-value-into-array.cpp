@@ -28,34 +28,35 @@
 #include <stdio.h>
 
 int main() {
-    int arr[100]; // สร้างอาเรย์เพื่อเก็บข้อมูล 100 ค่า (คุณสามารถปรับขนาดตามต้องการ)
-    int N = 0;
-
-    printf("Enter elements into the array (enter -1 to stop):\n");
-    int input;
-
-    do {
-        scanf("%d", &input);
-
-        if (input == -1) {
-            break;
+    int arr[100];  // สร้างอาเรย์ที่มีขนาดสูงสุด 100 ค่า
+    int n = 0;      // ตัวแปร n เก็บจำนวนข้อมูลที่ถูกเพิ่มเข้าในอาเรย์
+    
+    // รับข้อมูลจากผู้ใช้
+    while (1) {
+        printf("Input [%d]: ", n);
+        int num;
+        scanf("%d", &num);
+        
+        if (num == -1) {
+            break;  // หยุดการรับข้อมูลหากผู้ใช้ป้อน -1
         }
-
-        arr[N] = input;
-        N++;
-    } while (N < 100);
-
+        
+        arr[n] = num;
+        n++;  // เพิ่ม n เพื่อบ่งชี้ไปยังตำแหน่งถัดไปในอาเรย์
+    }
+    
+    // แสดงผลลัพธ์
     printf("Index = ");
-    for (int i = 0; i < N; i++) {
+    for (int i = 0; i < n; i++) {
         printf("%d ", i);
     }
-
+    
     printf("\nArray = ");
-    for (int i = 0; i < N; i++) {
+    for (int i = 0; i < n; i++) {
         printf("%d ", arr[i]);
     }
-
+    
     printf("\n");
-
+    
     return 0;
 }

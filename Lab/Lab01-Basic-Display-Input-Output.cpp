@@ -1,14 +1,58 @@
-#include <stduio.h>
+#include <stdio.h>
 
 int main() {
-    char Name[50] ;
-    int  Age = 0 ;
-    printf( "Enter your name: " ) 
-    scanf( "%s", Name ) ;
-    printf( "Enter your age: " ) ;
-    scanf( "%d", Age ) ;
-    print( "- - - - - -\n" ) ;
-    printf( "Hello %s \n", ___ ) ; //TODO: #14 Say hello to user.
-    printf( "Age = %d\n", ___ ) ; //TODO: #15 display user their age number plus 1.
+    char input[100] ; //ประกาศอาร์เรย์ input ที่มีขนาด 100 สำหรับเก็บข้อมูลที่ผู้ใช้ป้อนเข้ามา
+    int count[26] = { 0 } ; //ประกาศ count ขนาด 26 สำหรับเก็บจำนวนตัวอักษร a-z โดยกำหนดให้ทุกอักษรนับเป็น 0 เริ่มต้น
+    int space = 0 ; //ประกาศตัวแปร whitespace เพื่อเก็บจำนวนช่องว่าง 
+    int totalChars = 0 ; //ประกาศตัวแปร totalChars เพื่อเก็บจำนวนตัวอักษรทั้งหมด
+    printf( " INPUT : " ) ; // แสดงข้อความ "INPUT: " เพื่อรอรับข้อมูลจากผู้ใช้
+
+    gets( input ) ; // รับข้อมูล เเละ เอาไปเก้บไว้ใน input
+   
+    // นับจำนวนตัวอักษรที่ปรากฎในข้อความ
+    for ( int i = 0 ; input[i] != '\0' ; i++ ) { 
+
+        if (input[i] == ' ') {
+            space++ ;
+        }//end if  ถ้าตัวอักษรที่ตรวจสอบเป็นช่องว่าง whitespace เพิ่มขึ้น 1
+        
+        else if( input[i] >= 'A' && input[i] <= 'Z' ) {
+            count[input[i]]++ ; // เพิ่มจำนวนตัวอักษร
+        } //end else if ถ้าตัวอักษรเป็นตัวพิมพ์ใหญ่ (A-Z) จะเพิ่มจำนวนตัวอักษรใน count ตามตำแหน่งของตัวอักษร
+
+        else if ( input[i] >= 'a' && input[i] <= 'z' ) {
+            count[input[i]]++ ;
+        }//end else if  ถ้าตัวอักษรเป็นตัวพิมพ์เล็ก (a-z) จะเพิ่มจำนวนตัวอักษรใน count ตามตำแหน่งของตัวอักษร
+    }//end loop for วนลูปเพื่อตรวจสอบแต่ละตัวอักษรในข้อความที่ผู้ใช้ป้อน
+
+    // แสดงผลลัพธ์
+  
+    printf( " OUTPUT : \n " ) ; // แสดงข้อความ "OUTPUT:" เพื่อแสดงผลลัพธ์
+    printf( "whitespace %d \n ", space );// เเสดงจำนวนช่องว่างทั้งหมดที่นัยได้
     
-}//end main function
+ for ( int i = 0 ; i < 26 ; i++ ) {
+
+        if ( count[i] > 0 ) {
+            
+            printf( " %c -> %d\n ", 'a' + i, count[i] ) ; // แสดงจำนวนตัวอักษรแต่ละตัว
+            totalChars += count[i] ; // เพิ่มค่าจำนวนตัวอักษรใน count[i] เข้าไปใน totalChars เพื่อนับจำนวนตัวอักษรทั้งหมด
+        }//end if  ถ้าจำนวนตัวอักษรใน count ไม่เท่ากับ 0 จะแสดงผลลัพธ์โดยแสดงตัวอักษรและจำนวนของตัวอักษรนั้น
+    }//end loop for วนลูปเพื่อแสดงผลลัพธ์ของจำนวนตัวอักษร a-z
+ 
+    printf( " characters %d \n ", totalChars ) ; 
+
+    return 0 ;
+
+}
+
+
+
+//เขียนโปรเเกรมc รับ input จากผู้ใช้ เเล้วนำมาหา ตัวอักษรที่ซ้ำกัน + บอกด้วยว่าซ้ำกันกี่ตัว 
+
+//input : HELLO
+
+//Output : 5 characters
+//e -> 1
+//h -> 1
+//l -> 2
+//o -> 1
